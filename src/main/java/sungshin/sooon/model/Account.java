@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Account {
 
     @Id @GeneratedValue
-    private Long id;
+    private Long account_id;
 
     @Column(nullable = false)
     private String email;

@@ -3,24 +3,12 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'org.asciidoctor.convert' version '1.5.8'
     id 'java'
-    id 'org.springframework.experimental.aot' version '0.10.0-SNAPSHOT'
     id 'org.hibernate.orm'
 }
 
 group = 'sungshin'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
-repositories {
-    maven { url 'https://repo.spring.io/snapshot' }
-    mavenCentral()
-}
 
 ext {
     set('snippetsDir', file("build/generated-snippets"))
@@ -62,11 +50,6 @@ test {
 asciidoctor {
     inputs.dir snippetsDir
     dependsOn test
-}
-
-bootBuildImage {
-    builder = 'paketobuildpacks/builder:tiny'
-    environment = ['BP_NATIVE_IMAGE': 'true']
 }
 
 hibernate {
