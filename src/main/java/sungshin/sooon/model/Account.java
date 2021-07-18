@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
 @EqualsAndHashCode(of = "id")
 @Builder
 @AllArgsConstructor
@@ -28,12 +27,11 @@ public class Account {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String nickname;
 
     private LocalDateTime registeredDateTime;
 
-    // 인증 여부
-    private boolean isConfirmed;
 
     /**
      *

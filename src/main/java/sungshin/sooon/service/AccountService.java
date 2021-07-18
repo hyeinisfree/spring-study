@@ -9,10 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sungshin.sooon.config.TokenProvider;
 import sungshin.sooon.dto.LoginRequest;
+import sungshin.sooon.dto.RegisterRequest;
 import sungshin.sooon.dto.TokenDto;
 import sungshin.sooon.model.Account;
 import sungshin.sooon.model.RefreshToken;
@@ -20,6 +22,8 @@ import sungshin.sooon.model.UserAccount;
 import sungshin.sooon.repository.AccountRepository;
 import sungshin.sooon.repository.RefreshTokenRepository;
 import sungshin.sooon.util.SecurityUtil;
+
+import javax.persistence.EntityExistsException;
 
 @Service
 @Slf4j
@@ -29,6 +33,7 @@ public class AccountService implements UserDetailsService {
     private final RefreshTokenRepository refreshTokenRepository;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final TokenProvider tokenProvider;
+    private final PasswordEncoder passwordEncoder;
 
     // 로그인한 유저 정보 반환 to @CurrentUser
     public Account getUserInfo() {
@@ -70,5 +75,22 @@ public class AccountService implements UserDetailsService {
 
         // 5. 토큰 발급
         return tokenDto;
+    }
+
+    // 회원가입
+    @Transactional
+    public void register(RegisterRequest registerRequest) throws EntityExistsException {
+        Account account = registerRequest.toAccount(passwordEncoder);
+        accountRepository.save(account);
+    }
+
+    // 이메일 중복 체크
+    public boolean checkEmail(String email) {
+        return accountRepository.existsByEmail(email);
+    }
+
+    // 닉네임 중복 체크
+    public boolean checkNickname(String nickname) {
+        return accountRepository.existsByNickname(nickname);
     }
 }
