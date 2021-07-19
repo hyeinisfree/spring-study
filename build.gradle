@@ -9,6 +9,7 @@ plugins {
 group = 'sungshin'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+targetCompatibility = '11'
 
 configurations {
     asciidoctorExtensions
@@ -51,18 +52,14 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
     outputs.dir snippetsDir
+    useJUnitPlatform()
 }
 
 asciidoctor {
     configurations 'asciidoctorExtensions'
-    dependsOn test
     inputs.dir snippetsDir
-}
-
-asciidoctor.doFirst {
-    delete file('src/main/resources/static/docs')
+    dependsOn test
 }
 
 bootJar {

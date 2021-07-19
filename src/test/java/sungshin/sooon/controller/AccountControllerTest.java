@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class AccountControllerTest {
+
     @Autowired
     MockMvc mockMvc;
 
