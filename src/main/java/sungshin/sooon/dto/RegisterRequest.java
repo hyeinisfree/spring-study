@@ -2,7 +2,7 @@ package sungshin.sooon.dto;
 
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import sungshin.sooon.model.Account;
+import sungshin.sooon.domain.account.Account;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;

@@ -1,7 +1,7 @@
-package sungshin.sooon.repository;
+package sungshin.sooon.domain.account;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import sungshin.sooon.model.Account;
+import sungshin.sooon.domain.account.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
     Account findAccountByEmail(String email);

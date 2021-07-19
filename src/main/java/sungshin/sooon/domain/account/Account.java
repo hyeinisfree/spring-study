@@ -1,4 +1,4 @@
-package sungshin.sooon.model;
+package sungshin.sooon.domain.account;
 
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;

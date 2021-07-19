@@ -16,11 +16,11 @@ import sungshin.sooon.config.TokenProvider;
 import sungshin.sooon.dto.LoginRequest;
 import sungshin.sooon.dto.RegisterRequest;
 import sungshin.sooon.dto.TokenDto;
-import sungshin.sooon.model.Account;
-import sungshin.sooon.model.RefreshToken;
-import sungshin.sooon.model.UserAccount;
-import sungshin.sooon.repository.AccountRepository;
-import sungshin.sooon.repository.RefreshTokenRepository;
+import sungshin.sooon.domain.account.Account;
+import sungshin.sooon.domain.account.RefreshToken;
+import sungshin.sooon.domain.account.UserAccount;
+import sungshin.sooon.domain.account.AccountRepository;
+import sungshin.sooon.domain.account.RefreshTokenRepository;
 import sungshin.sooon.util.SecurityUtil;
 
 import javax.persistence.EntityExistsException;
