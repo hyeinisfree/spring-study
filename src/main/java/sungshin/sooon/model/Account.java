@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "account_id")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - SooonApplicationTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>SooonApplicationTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/sungshin.sooon.html">sungshin.sooon</a> &gt; SooonApplicationTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.004s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">contextLoads()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2021-07-19 21:55:39.910  INFO 8894 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [sungshin.sooon.SooonApplicationTests], using SpringBootContextLoader
+2021-07-19 21:55:39.918  INFO 8894 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [sungshin.sooon.SooonApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-07-19 21:55:39.919  INFO 8894 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [sungshin.sooon.SooonApplicationTests]: SooonApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-07-19 21:55:39.935  INFO 8894 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration sungshin.sooon.SooonApplication for test class sungshin.sooon.SooonApplicationTests
+2021-07-19 21:55:39.943  INFO 8894 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener, org.springframework.security.test.context.support.ReactorContextTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-07-19 21:55:39.944  INFO 8894 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6c285c80, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2f51ef42, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1aec229, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@35fb87a3, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1b1911c0, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3b12c61e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4c5af4df, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2575b468, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@76313617, org.springframework.test.context.event.EventPublishingTestExecutionListener@5bbe3cf9, org.springframework.security.test.context.support.ReactorContextTestExecutionListener@4059c75d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4807edca, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@37f9fb53, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@1d0a40a1, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@13e70f72, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@6479c979, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1c2285c6]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.0)
+
+2021-07-19 21:55:40.026  INFO 8894 --- [    Test worker] sungshin.sooon.SooonApplicationTests     : Starting SooonApplicationTests using Java 11.0.11 on hyein-ui-MacBookPro.local with PID 8894 (started by hyein in /Users/hyein/Desktop/spring-study/spring-study)
+2021-07-19 21:55:40.028  INFO 8894 --- [    Test worker] sungshin.sooon.SooonApplicationTests     : No active profile set, falling back to default profiles: default
+2021-07-19 21:55:40.379  INFO 8894 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-19 21:55:40.398  INFO 8894 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 2 JPA repository interfaces.
+2021-07-19 21:55:40.539  INFO 8894 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$c64528a3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-19 21:55:40.550  INFO 8894 --- [    Test worker] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-07-19 21:55:40.672  INFO 8894 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-07-19 21:55:40.814  INFO 8894 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-07-19 21:55:40.837  INFO 8894 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-07-19 21:55:40.845  INFO 8894 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-07-19 21:55:40.970  INFO 8894 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-07-19 21:55:40.972  INFO 8894 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-19 21:55:41.032  WARN 8894 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-19 21:55:41.442  INFO 8894 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/**'] with []
+2021-07-19 21:55:41.443  INFO 8894 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/favicon.ico'] with []
+2021-07-19 21:55:41.445  INFO 8894 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Mvc [pattern='/node_modules/**'] with []
+2021-07-19 21:55:41.446  INFO 8894 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@1152162e with []
+2021-07-19 21:55:41.497  INFO 8894 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39152e21, org.springframework.security.web.context.SecurityContextPersistenceFilter@4c94d1f6, org.springframework.security.web.header.HeaderWriterFilter@549e6020, org.springframework.security.web.authentication.logout.LogoutFilter@7665c414, sungshin.sooon.config.JwtFilter@4b772c81, sungshin.sooon.config.JwtFilter@4ad60092, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64e11694, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@43d9f548, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1d84e931, org.springframework.security.web.session.SessionManagementFilter@7185c2e0, org.springframework.security.web.access.ExceptionTranslationFilter@38820be3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@53e23427]
+2021-07-19 21:55:41.633  WARN 8894 --- [    Test worker] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2021-07-19 21:55:41.805  INFO 8894 --- [    Test worker] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2021-07-19 21:55:41.807  INFO 8894 --- [    Test worker] sungshin.sooon.SooonApplicationTests     : Started SooonApplicationTests in 1.859 seconds (JVM running for 12.717)
+2021-07-19 21:55:41.810  INFO 8894 --- [    Test worker] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-07-19 21:55:41.811  INFO 8894 --- [    Test worker] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.0.2</a> at 2021. 7. 19. 오후 9:55:42</p>
+</div>
+</div>
+</body>
+</html>
