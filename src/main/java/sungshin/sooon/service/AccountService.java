@@ -22,8 +22,12 @@ import sungshin.sooon.domain.account.UserAccount;
 import sungshin.sooon.domain.account.AccountRepository;
 import sungshin.sooon.domain.account.RefreshTokenRepository;
 import sungshin.sooon.util.SecurityUtil;
+import sungshin.sooon.util.exception.EmailDuplicateException;
+import sungshin.sooon.util.exception.ErrorCode;
+import sungshin.sooon.util.exception.NicknameDuplicateException;
 
 import javax.persistence.EntityExistsException;
+import javax.validation.Valid;
 
 @Service
 @Slf4j
@@ -79,18 +83,24 @@ public class AccountService implements UserDetailsService {
 
     // 회원가입
     @Transactional
-    public void register(RegisterRequest registerRequest) throws EntityExistsException {
+    public void register(@Valid RegisterRequest registerRequest) throws EntityExistsException {
+        checkEmail(registerRequest.getEmail());
+        checkNickname(registerRequest.getNickname());
         Account account = registerRequest.toAccount(passwordEncoder);
         accountRepository.save(account);
     }
 
     // 이메일 중복 체크
-    public boolean checkEmail(String email) {
-        return accountRepository.existsByEmail(email);
+    public void checkEmail(String email) {
+        if (accountRepository.existsByEmail(email)) {
+            throw new EmailDuplicateException(ErrorCode.EMAIL_DUPLICATION);
+        }
     }
 
     // 닉네임 중복 체크
-    public boolean checkNickname(String nickname) {
-        return accountRepository.existsByNickname(nickname);
+    public void checkNickname(String nickname) {
+        if (accountRepository.existsByNickname(nickname)) {
+            throw new NicknameDuplicateException(ErrorCode.NICKNAME_DUPLICATION);
+        }
     }
 }

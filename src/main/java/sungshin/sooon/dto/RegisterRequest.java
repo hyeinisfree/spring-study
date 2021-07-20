@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import sungshin.sooon.domain.account.Account;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
@@ -17,14 +18,14 @@ import java.time.LocalDateTime;
 public class RegisterRequest {
 
     @Email
-    @NotNull
+    @NotBlank
     private String email;
 
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{10,}$")
-    @NotNull
+    @NotBlank
     private String password;
 
-    @NotNull
+    @NotBlank
     private String nickname;
     private LocalDateTime registeredDateTime;
 
