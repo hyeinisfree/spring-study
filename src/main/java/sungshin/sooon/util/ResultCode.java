@@ -15,6 +15,8 @@ public enum ResultCode {
     VALID_ERROR(BAD_REQUEST, "유효성 검사 실패"),
     CHECK_EMAIL_SUCCESS(OK, "사용가능한 이메일입니다"),
     CHECK_NICKNAME_SUCCESS(OK, "사용가능한 닉네임입니다"),
+    POST_CREATE_SUCCESS(CREATED, "포스트 생성 성공"),
+    POST_CREATE_FAIL(BAD_REQUEST, "포스트 생성 실패"),
     ;
 
     private final HttpStatus httpStatus;
