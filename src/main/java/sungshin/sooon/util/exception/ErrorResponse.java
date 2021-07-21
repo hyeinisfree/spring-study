@@ -14,7 +14,6 @@ public class ErrorResponse {
     private final String error;
     private final String code;
     private final String message;
-    private final String data;
 
     public static ResponseEntity<ErrorResponse> toResponseEntity(ErrorCode errorCode) {
         return ResponseEntity
