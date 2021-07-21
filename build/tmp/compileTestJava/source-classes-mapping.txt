@@ -1,6 +1,0 @@
-sungshin/sooon/SooonApplicationTests.java
- sungshin.sooon.SooonApplicationTests
-sungshin/sooon/controller/AccountControllerTest.java
- sungshin.sooon.controller.AccountControllerTest
-sungshin/sooon/controller/HomeControllerTest.java
- sungshin.sooon.controller.HomeControllerTest
