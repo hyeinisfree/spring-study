@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.account.CurrentUser;
-import sungshin.sooon.dto.PostCreateRequest;
+import sungshin.sooon.dto.PostDto;
 import sungshin.sooon.service.PostService;
 import sungshin.sooon.util.exception.Result;
 import sungshin.sooon.util.exception.ResultCode;
@@ -20,10 +20,10 @@ public class PostController {
     private final PostService postService;
     
     @PostMapping("/create")
-    public ResponseEntity<Result> create(@CurrentUser Account account, @RequestBody PostCreateRequest postCreateRequest) {
+    public ResponseEntity<Result> create(@CurrentUser Account account, @RequestBody PostDto postDto) {
         if(account != null) {
-            postCreateRequest.setAccount(account);
-            postService.create(postCreateRequest);
+            postDto.setAccount(account);
+            postService.create(postDto);
             return Result.toResult(ResultCode.POST_CREATE_SUCCESS);
         }
         return Result.toResult(ResultCode.POST_CREATE_FAIL);

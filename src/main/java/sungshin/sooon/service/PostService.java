@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sungshin.sooon.domain.post.Post;
 import sungshin.sooon.domain.post.PostRepository;
-import sungshin.sooon.dto.PostCreateRequest;
+import sungshin.sooon.dto.PostDto;
 
 @Service
 @Slf4j
@@ -17,8 +17,8 @@ public class PostService {
 
     // 포스트 생성
     @Transactional
-    public void create(PostCreateRequest postCreateRequest) {
-        Post post = postCreateRequest.toPost();
+    public void create(PostDto postDto) {
+        Post post = postDto.toPost();
         postRepository.save(post);
     }
 }

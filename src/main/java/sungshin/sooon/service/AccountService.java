@@ -13,8 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sungshin.sooon.config.TokenProvider;
-import sungshin.sooon.dto.LoginRequest;
-import sungshin.sooon.dto.RegisterRequest;
+import sungshin.sooon.dto.LoginDto;
+import sungshin.sooon.dto.AccountDto;
 import sungshin.sooon.dto.TokenDto;
 import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.account.RefreshToken;
@@ -56,9 +56,9 @@ public class AccountService implements UserDetailsService {
 
     // 로그인
     @Transactional
-    public TokenDto login(LoginRequest loginRequest) {
+    public TokenDto login(LoginDto loginDto) {
         // 1. Login ID/PW 를 기반으로 AuthenticationToken 생성
-        UsernamePasswordAuthenticationToken authenticationToken = loginRequest.toAuthentication();
+        UsernamePasswordAuthenticationToken authenticationToken = loginDto.toAuthentication();
 
         // 2. 검증 (사용자 비밀번호 체크) 이 이루어지는 부분
         //    authenticate 메서드가 실행이 될 때 loadUserByUsername 메서드가 실행됨
@@ -83,10 +83,10 @@ public class AccountService implements UserDetailsService {
 
     // 회원가입
     @Transactional
-    public void register(@Valid RegisterRequest registerRequest) throws EntityExistsException {
-        checkEmail(registerRequest.getEmail());
-        checkNickname(registerRequest.getNickname());
-        Account account = registerRequest.toAccount(passwordEncoder);
+    public void register(@Valid AccountDto accountDto) throws EntityExistsException {
+        checkEmail(accountDto.getEmail());
+        checkNickname(accountDto.getNickname());
+        Account account = accountDto.toAccount(passwordEncoder);
         accountRepository.save(account);
     }
 
