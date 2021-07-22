@@ -8,6 +8,7 @@ import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.account.CurrentUser;
 import sungshin.sooon.domain.post.Post;
 import sungshin.sooon.dto.PostRequestDto;
+import sungshin.sooon.dto.PostResponseDto;
 import sungshin.sooon.service.PostService;
 import sungshin.sooon.util.exception.Result;
 import sungshin.sooon.util.exception.ResultCode;
@@ -33,8 +34,8 @@ public class PostController {
     }
 
     @GetMapping("/{postId}")
-    public ResponseEntity<Result<Post>> readOne(@PathVariable Long postId) {
-        Post data = postService.readOne(postId);
+    public ResponseEntity<Result<PostResponseDto>> readOne(@PathVariable Long postId) {
+        PostResponseDto data = postService.readOne(postId);
         return Result.toResult(ResultCode.POST_READ_SUCCESS, data);
     }
 

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sungshin.sooon.domain.post.Post;
 import sungshin.sooon.domain.post.PostRepository;
 import sungshin.sooon.dto.PostRequestDto;
+import sungshin.sooon.dto.PostResponseDto;
 import sungshin.sooon.util.exception.ResourceNotFoundException;
 import sungshin.sooon.util.exception.ResultCode;
 
@@ -28,7 +29,7 @@ public class PostService {
 
     // 포스트 조회
     @Transactional
-    public Post readOne(Long postId) {
-        return postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(ResultCode.POST_NOT_FOUND));
+    public PostResponseDto readOne(Long postId) {
+        return PostResponseDto.from(postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(ResultCode.POST_NOT_FOUND)));
     }
 }
