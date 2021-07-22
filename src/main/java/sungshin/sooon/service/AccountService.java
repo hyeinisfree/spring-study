@@ -23,8 +23,8 @@ import sungshin.sooon.domain.account.AccountRepository;
 import sungshin.sooon.domain.account.RefreshTokenRepository;
 import sungshin.sooon.util.SecurityUtil;
 import sungshin.sooon.util.exception.EmailDuplicateException;
-import sungshin.sooon.util.exception.ErrorCode;
 import sungshin.sooon.util.exception.NicknameDuplicateException;
+import sungshin.sooon.util.exception.ResultCode;
 
 import javax.persistence.EntityExistsException;
 import javax.validation.Valid;
@@ -93,14 +93,14 @@ public class AccountService implements UserDetailsService {
     // 이메일 중복 체크
     public void checkEmail(String email) {
         if (accountRepository.existsByEmail(email)) {
-            throw new EmailDuplicateException(ErrorCode.EMAIL_DUPLICATION);
+            throw new EmailDuplicateException(ResultCode.EMAIL_DUPLICATION);
         }
     }
 
     // 닉네임 중복 체크
     public void checkNickname(String nickname) {
         if (accountRepository.existsByNickname(nickname)) {
-            throw new NicknameDuplicateException(ErrorCode.NICKNAME_DUPLICATION);
+            throw new NicknameDuplicateException(ResultCode.NICKNAME_DUPLICATION);
         }
     }
 }

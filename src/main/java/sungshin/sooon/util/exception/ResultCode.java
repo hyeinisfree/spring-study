@@ -8,7 +8,15 @@ import static org.springframework.http.HttpStatus.*;
 
 @Getter
 @AllArgsConstructor
-public enum ErrorCode {
+public enum ResultCode {
+
+    LOGIN_SUCCESS(OK, "로그인 성공"),
+    SIGNUP_SUCCESS(CREATED, "회원가입 성공"),
+    VALID_ERROR(BAD_REQUEST, "유효성 검사 실패"),
+    CHECK_EMAIL_SUCCESS(OK, "사용가능한 이메일입니다"),
+    CHECK_NICKNAME_SUCCESS(OK, "사용가능한 닉네임입니다"),
+    POST_CREATE_SUCCESS(CREATED, "포스트 생성 성공"),
+    POST_CREATE_FAIL(BAD_REQUEST, "포스트 생성 실패"),
 
     /* 400 BAD_REQUEST : 잘못된 요청 */
     INVALID_REFRESH_TOKEN(BAD_REQUEST, "리프레시 토큰이 유효하지 않습니다"),
@@ -31,7 +39,6 @@ public enum ErrorCode {
 
     /* 500 CONFLICT */
     INTER_SERVER_ERROR(INTERNAL_SERVER_ERROR, "서버 오류 발생"),
-
     ;
 
     private final HttpStatus httpStatus;

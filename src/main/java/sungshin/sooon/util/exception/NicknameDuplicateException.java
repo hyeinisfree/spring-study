@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class NicknameDuplicateException extends RuntimeException{
 
-    private final ErrorCode errorCode;
+    private final ResultCode resultCode;
 }

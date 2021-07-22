@@ -1,12 +1,9 @@
-package sungshin.sooon.util;
+package sungshin.sooon.util.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import sungshin.sooon.util.exception.ErrorCode;
-import sungshin.sooon.util.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +13,7 @@ import java.time.LocalDateTime;
 public class Result<T> {
     private final LocalDateTime timestamp = LocalDateTime.now();
     private final int status;
-    private final String ok;
+    private final String success;
     private final String code;
     private final String message;
     private final T data;
@@ -26,7 +23,7 @@ public class Result<T> {
                 .status(resultCode.getHttpStatus())
                 .body(Result.builder()
                         .status(resultCode.getHttpStatus().value())
-                        .ok(resultCode.getHttpStatus().name())
+                        .success(resultCode.getHttpStatus().name())
                         .code(resultCode.name())
                         .message(resultCode.getDetail())
                         .build()
@@ -38,7 +35,7 @@ public class Result<T> {
                 .status(resultCode.getHttpStatus())
                 .body(Result.<T>builder()
                         .status(resultCode.getHttpStatus().value())
-                        .ok(resultCode.getHttpStatus().name())
+                        .success(resultCode.getHttpStatus().name())
                         .code(resultCode.name())
                         .message(resultCode.getDetail())
                         .data(data)

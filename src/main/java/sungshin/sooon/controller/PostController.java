@@ -4,14 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.account.CurrentUser;
-import sungshin.sooon.domain.account.UserAccount;
 import sungshin.sooon.dto.PostCreateRequest;
 import sungshin.sooon.service.PostService;
-import sungshin.sooon.util.Result;
-import sungshin.sooon.util.ResultCode;
+import sungshin.sooon.util.exception.Result;
+import sungshin.sooon.util.exception.ResultCode;
 
 @Slf4j
 @RestController
