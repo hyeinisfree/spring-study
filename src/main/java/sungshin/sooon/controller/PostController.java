@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.account.CurrentUser;
 import sungshin.sooon.domain.post.Post;
-import sungshin.sooon.dto.PostDto;
+import sungshin.sooon.dto.PostRequestDto;
 import sungshin.sooon.service.PostService;
 import sungshin.sooon.util.exception.Result;
 import sungshin.sooon.util.exception.ResultCode;
@@ -23,10 +23,10 @@ public class PostController {
     private final PostService postService;
     
     @PostMapping("")
-    public ResponseEntity<Result> create(@CurrentUser Account account, @RequestBody @Valid PostDto postDto) {
+    public ResponseEntity<Result> create(@CurrentUser Account account, @RequestBody @Valid PostRequestDto postRequestDto) {
         if(account != null) {
-            postDto.setAccount(account);
-            postService.create(postDto);
+            postRequestDto.setAccount(account);
+            postService.create(postRequestDto);
             return Result.toResult(ResultCode.POST_CREATE_SUCCESS);
         }
         return Result.toResult(ResultCode.POST_CREATE_FAIL);
@@ -37,4 +37,9 @@ public class PostController {
         Post data = postService.readOne(postId);
         return Result.toResult(ResultCode.POST_READ_SUCCESS, data);
     }
+
+//    @PatchMapping("/{postId}")
+//    public ResponseEntity<Result> update(@CurrentUser Account account, @PathVariable Long postId) {
+//
+//    }
 }
