@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Result<T> {
     private final LocalDateTime timestamp = LocalDateTime.now();
     private final int status;
-    private final String success;
+    private final String error;
     private final String code;
     private final String message;
     private final T data;
@@ -23,7 +23,7 @@ public class Result<T> {
                 .status(resultCode.getHttpStatus())
                 .body(Result.builder()
                         .status(resultCode.getHttpStatus().value())
-                        .success(resultCode.getHttpStatus().name())
+                        .error(resultCode.getHttpStatus().name())
                         .code(resultCode.name())
                         .message(resultCode.getDetail())
                         .build()
@@ -35,7 +35,7 @@ public class Result<T> {
                 .status(resultCode.getHttpStatus())
                 .body(Result.<T>builder()
                         .status(resultCode.getHttpStatus().value())
-                        .success(resultCode.getHttpStatus().name())
+                        .error(resultCode.getHttpStatus().name())
                         .code(resultCode.name())
                         .message(resultCode.getDetail())
                         .data(data)

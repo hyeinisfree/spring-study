@@ -4,11 +4,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestControllerAdvice
@@ -28,6 +35,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-       return new ResponseEntity<>(ex.getBindingResult().getAllErrors().get(0).getCode(), HttpStatus.BAD_REQUEST);
+        List<FieldError> allFieldErrors = ex.getBindingResult().getFieldErrors();
+        List<Map<String, String>> data = new ArrayList<>();
+        for(FieldError fieldError : allFieldErrors) {
+            Map<String, String> item = new HashMap<>();
+            item.put(fieldError.getField(), fieldError.getDefaultMessage());
+            data.add(item);
+        }
+        return Result.toResult(ResultCode.VALID_ERROR, data);
     }
 }
