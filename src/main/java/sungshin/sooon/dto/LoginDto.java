@@ -14,13 +14,6 @@ public class LoginDto {
     private String email;
     private String password;
 
-    public Account toAccount(PasswordEncoder passwordEncoder) {
-        return Account.builder()
-                .email(email)
-                .password(passwordEncoder.encode(password))
-                .build();
-    }
-
     public UsernamePasswordAuthenticationToken toAuthentication() {
         return new UsernamePasswordAuthenticationToken(email, password);
     }

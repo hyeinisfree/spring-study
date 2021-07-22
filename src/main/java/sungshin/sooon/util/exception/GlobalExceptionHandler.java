@@ -33,6 +33,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return Result.toResult(e.getResultCode());
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    protected ResponseEntity<Result> handleResourceNotFoundException(ResourceNotFoundException e){
+        log.error("handleResourceNotFoundException : {}", e.getResultCode());
+        return Result.toResult(e.getResultCode());
+    }
+
     @Override
     protected ResponseEntity handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<FieldError> allFieldErrors = ex.getBindingResult().getFieldErrors();

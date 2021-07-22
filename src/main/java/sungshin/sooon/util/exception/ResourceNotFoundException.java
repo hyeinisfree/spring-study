@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CustomException extends RuntimeException {
+public class ResourceNotFoundException extends RuntimeException{
+
     private final ResultCode resultCode;
 }

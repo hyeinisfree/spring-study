@@ -6,6 +6,8 @@ import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.post.Post;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -15,10 +17,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PostDto {
 
+    @NotBlank
     private String title;
 
+    @NotBlank
     private String content;
 
+    @NotNull
     private boolean is_anonymous;
 
     private LocalDateTime created_at;
