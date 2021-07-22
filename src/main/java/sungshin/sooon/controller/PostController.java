@@ -19,7 +19,7 @@ public class PostController {
 
     private final PostService postService;
     
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<Result> create(@CurrentUser Account account, @RequestBody PostDto postDto) {
         if(account != null) {
             postDto.setAccount(account);
