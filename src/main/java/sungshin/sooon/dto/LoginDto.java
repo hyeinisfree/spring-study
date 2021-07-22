@@ -10,7 +10,7 @@ import sungshin.sooon.domain.account.Account;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
+public class LoginDto {
     private String email;
     private String password;
 
