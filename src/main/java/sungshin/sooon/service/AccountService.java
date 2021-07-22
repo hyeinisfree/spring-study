@@ -83,7 +83,7 @@ public class AccountService implements UserDetailsService {
 
     // 회원가입
     @Transactional
-    public void register(@Valid AccountDto accountDto) throws EntityExistsException {
+    public void signup(@Valid AccountDto accountDto) throws EntityExistsException {
         checkEmail(accountDto.getEmail());
         checkNickname(accountDto.getNickname());
         Account account = accountDto.toAccount(passwordEncoder);

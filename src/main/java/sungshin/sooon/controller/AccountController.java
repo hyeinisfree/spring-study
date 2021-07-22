@@ -31,9 +31,9 @@ public class AccountController {
 
     // 회원가입
     @PostMapping("/signup")
-    public ResponseEntity signup(@RequestBody @Valid AccountDto accountDto) {
-        accountService.register(accountDto);
-        return new ResponseEntity(HttpStatus.CREATED);
+    public ResponseEntity<Result> signup(@RequestBody @Valid AccountDto accountDto) {
+        accountService.signup(accountDto);
+        return Result.toResult(ResultCode.SIGNUP_SUCCESS);
     }
 
     // 이메일 중복 체크
