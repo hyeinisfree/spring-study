@@ -2,6 +2,8 @@ package sungshin.sooon.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sungshin.sooon.domain.account.Account;
@@ -14,6 +16,8 @@ import sungshin.sooon.util.exception.Result;
 import sungshin.sooon.util.exception.ResultCode;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Stream;
 
 @Slf4j
 @RestController
@@ -39,8 +43,21 @@ public class PostController {
         return Result.toResult(ResultCode.POST_READ_SUCCESS, data);
     }
 
-//    @PatchMapping("/{postId}")
-//    public ResponseEntity<Result> update(@CurrentUser Account account, @PathVariable Long postId) {
-//
-//    }
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<Result> deleteOne(@CurrentUser Account account, @PathVariable Long postId) {
+        if(account != null) {
+            if(postService.delete(account, postId)){
+                return Result.toResult(ResultCode.POST_DELETE_SUCCESS);
+            }else {
+                return Result.toResult(ResultCode.POST_DELETE_FAIL);
+            }
+        }
+        return Result.toResult(ResultCode.POST_DELETE_FAIL);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Result<Page<PostResponseDto>>> postPage(Pageable pageable) {
+        Page<PostResponseDto> data = postService.postPage(pageable);
+        return Result.toResult(ResultCode.POST_READ_SUCCESS, data);
+    }
 }

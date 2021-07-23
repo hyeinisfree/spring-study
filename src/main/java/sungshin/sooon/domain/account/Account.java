@@ -32,6 +32,16 @@ public class Account {
 
     private LocalDateTime registeredDateTime;
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "account_id=" + account_id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", registeredDateTime=" + registeredDateTime +
+                '}';
+    }
 
     /**
      *

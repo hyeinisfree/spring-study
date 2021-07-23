@@ -17,7 +17,7 @@ public enum ResultCode {
 
     POST_CREATE_SUCCESS(CREATED, "포스트 생성 성공"),
     POST_READ_SUCCESS(OK, "포스트 조회 성공"),
-
+    POST_DELETE_SUCCESS(OK, "포스트 삭제 성공"),
 
     /* 400 BAD_REQUEST : 잘못된 요청 */
     INVALID_REFRESH_TOKEN(BAD_REQUEST, "리프레시 토큰이 유효하지 않습니다"),
@@ -28,6 +28,7 @@ public enum ResultCode {
 
     VALID_ERROR(BAD_REQUEST, "유효성 검사 실패"),
     POST_CREATE_FAIL(BAD_REQUEST, "포스트 생성 실패"),
+    POST_DELETE_FAIL(BAD_REQUEST, "포스트 삭제 실패"),
 
     /* 401 UNAUTHORIZED : 인증되지 않은 사용자 */
     INVALID_AUTH_TOKEN(UNAUTHORIZED, "권한 정보가 없는 토큰입니다"),
