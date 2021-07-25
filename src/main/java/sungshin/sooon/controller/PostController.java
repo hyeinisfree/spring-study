@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/post")
+@RequestMapping("/api/v1/posts")
 public class PostController {
 
     private final PostService postService;

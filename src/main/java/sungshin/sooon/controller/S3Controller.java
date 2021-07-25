@@ -15,7 +15,7 @@ import java.io.IOException;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/files")
 public class S3Controller {
 
     private final S3Uploader s3Uploader;

@@ -37,14 +37,14 @@ public class AccountController {
     }
 
     // 이메일 중복 체크
-    @GetMapping("/checkEmail/{email}")
+    @GetMapping("/check-email/{email}")
     public ResponseEntity<Result> checkEmail(@PathVariable @NotBlank @Email String email) {
         accountService.checkEmail(email);
         return Result.toResult(ResultCode.CHECK_EMAIL_SUCCESS);
     }
 
     // 닉네임 중복 체크
-    @GetMapping("/checkNickname/{nickname}")
+    @GetMapping("/check-nickname/{nickname}")
     public ResponseEntity<Result> checkNickname(@PathVariable @NotBlank String nickname) {
         accountService.checkNickname(nickname);
         return Result.toResult(ResultCode.CHECK_NICKNAME_SUCCESS);
