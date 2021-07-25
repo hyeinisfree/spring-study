@@ -2,24 +2,23 @@ package sungshin.sooon.domain.account;
 
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GeneratorType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@EqualsAndHashCode(of = "account_id")
+@EqualsAndHashCode(of = "id")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicUpdate
 public class Account {
 
-    @Id @GeneratedValue
-    private Long account_id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "account_id", nullable = false)
+    private Long id;
 
     @Column(nullable = false)
     private String email;
@@ -30,18 +29,8 @@ public class Account {
     @Column(nullable = false)
     private String nickname;
 
+    @Column(nullable = false)
     private LocalDateTime registeredDateTime;
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "account_id=" + account_id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", registeredDateTime=" + registeredDateTime +
-                '}';
-    }
 
     /**
      *

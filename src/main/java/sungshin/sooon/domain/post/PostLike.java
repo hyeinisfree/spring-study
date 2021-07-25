@@ -8,16 +8,15 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@EqualsAndHashCode(of = "post_like_id")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@DynamicUpdate
 public class PostLike {
 
     @Id
-    @GeneratedValue
-    private Long post_like_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_like_id", nullable = false)
+    private Long id;
 
     @OneToOne
     @JoinColumn(name="account_id")

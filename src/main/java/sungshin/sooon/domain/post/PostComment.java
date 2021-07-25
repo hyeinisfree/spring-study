@@ -9,26 +9,27 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@EqualsAndHashCode(of = "post_comment_id")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@DynamicUpdate
 public class PostComment {
 
-    @Id @GeneratedValue
-    private Long post_comment_id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_comment_id", nullable = false)
+    private Long id;
 
     @Column(nullable = false)
     private String comment;
 
 
     @Column(nullable = false)
-    private boolean is_anonymous;
+    private boolean isAnonymous;
 
-    private Long order_num;
+    @Column(nullable = false)
+    private Long orderNum;
 
-    private LocalDateTime created_at;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name="post_id")

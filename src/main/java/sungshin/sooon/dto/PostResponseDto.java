@@ -20,15 +20,15 @@ import java.util.List;
 @NoArgsConstructor
 public class PostResponseDto {
 
-    private Long post_id;
+    private Long id;
 
     private String title;
 
     private String content;
 
-    private boolean is_anonymous;
+    private boolean isAnonymous;
 
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     private AccountResponseDto account;
 
@@ -36,11 +36,11 @@ public class PostResponseDto {
 
     public static PostResponseDto from(Post post) {
         return PostResponseDto.builder()
-                .post_id(post.getPost_id())
+                .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
-                .is_anonymous(post.is_anonymous())
-                .created_at(post.getCreated_at())
+                .isAnonymous(post.isAnonymous())
+                .createdAt(post.getCreatedAt())
                 .account(AccountResponseDto.from(post.getAccount()))
                 .build();
     }

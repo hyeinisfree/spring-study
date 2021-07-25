@@ -24,9 +24,9 @@ public class PostRequestDto {
     private String content;
 
     @NotNull
-    private boolean is_anonymous;
+    private boolean isAnonymous;
 
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     private Account account;
 
@@ -34,8 +34,8 @@ public class PostRequestDto {
         return Post.builder()
                 .title(title)
                 .content(content)
-                .is_anonymous(is_anonymous)
-                .created_at(LocalDateTime.now())
+                .isAnonymous(isAnonymous)
+                .createdAt(LocalDateTime.now())
                 .account(account)
                 .build();
     }

@@ -7,20 +7,19 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@EqualsAndHashCode(of ="post_images_id")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@DynamicUpdate
 public class PostImages {
 
-    @Id @GeneratedValue
-    private Long post_images_id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_images_id", nullable = false)
+    private Long id;
 
     @Column(nullable = false)
-    private String image_url;
+    private String imageUrl;
 
-    private Long order_num;
+    private Long orderNum;
 
     @ManyToOne
     @JoinColumn(name="post_id")

@@ -10,13 +10,13 @@ import sungshin.sooon.domain.account.Account;
 @NoArgsConstructor
 public class AccountResponseDto {
 
-    private Long account_id;
+    private Long id;
     private String email;
     private String nickname;
 
     public static AccountResponseDto from(Account account) {
         return AccountResponseDto.builder()
-                .account_id(account.getAccount_id())
+                .id(account.getId())
                 .email(account.getEmail())
                 .nickname(account.getNickname())
                 .build();
