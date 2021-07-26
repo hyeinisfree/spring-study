@@ -17,7 +17,7 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class S3Uploader {
+public class FileUploader {
 
     private final static String TEMP_FILE_PATH = "src/main/resources/static/";
 
