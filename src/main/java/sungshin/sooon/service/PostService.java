@@ -53,7 +53,7 @@ public class PostService {
 
     // 포스트 조회 - 페이징 처리
     @Transactional
-    public Page<PostResponseDto> postPage(Pageable pageable) {
+    public Page<PostResponseDto> readAll(Pageable pageable) {
         Page<Post> posts = postRepository.findAll(pageable);
         Page<PostResponseDto> data = posts.map(PostResponseDto::from);
         return data;
