@@ -27,7 +27,6 @@ public class PostController {
 
     private final PostService postService;
 
-
     // 포스트 생성
     @PostMapping("")
     public ResponseEntity<Result> create(@CurrentUser Account account, @RequestBody @Valid PostRequestDto postRequestDto) {
@@ -59,7 +58,8 @@ public class PostController {
     // 포스트 좋아요
     @PostMapping("/like/{postId}")
     public ResponseEntity<Result> like(@CurrentUser Account account, @PathVariable Long postId) {
-        return Result.toResult(null);
+        postService.like(account, postId);
+        return Result.toResult(ResultCode.POST_LIKE_SUCCESS);
     }
 
     // 댓글 생성

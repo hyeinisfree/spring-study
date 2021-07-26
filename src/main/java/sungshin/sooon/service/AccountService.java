@@ -22,8 +22,7 @@ import sungshin.sooon.domain.account.UserAccount;
 import sungshin.sooon.domain.account.AccountRepository;
 import sungshin.sooon.domain.account.RefreshTokenRepository;
 import sungshin.sooon.util.SecurityUtil;
-import sungshin.sooon.util.exception.EmailDuplicateException;
-import sungshin.sooon.util.exception.NicknameDuplicateException;
+import sungshin.sooon.util.exception.DuplicateException;
 import sungshin.sooon.util.exception.ResultCode;
 
 import javax.persistence.EntityExistsException;
@@ -41,12 +40,12 @@ public class AccountService implements UserDetailsService {
 
     // 로그인한 유저 정보 반환 to @CurrentUser
     public Account getUserInfo() {
-        return accountRepository.findAccountByEmail(SecurityUtil.getUserName());
+        return accountRepository.findByEmail(SecurityUtil.getUserName());
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.findAccountByEmail(username);
+        Account account = accountRepository.findByEmail(username);
 
         if(account == null) {
             throw new UsernameNotFoundException(username);
@@ -93,14 +92,14 @@ public class AccountService implements UserDetailsService {
     // 이메일 중복 체크
     public void checkEmail(String email) {
         if (accountRepository.existsByEmail(email)) {
-            throw new EmailDuplicateException(ResultCode.EMAIL_DUPLICATION);
+            throw new DuplicateException(ResultCode.EMAIL_DUPLICATION);
         }
     }
 
     // 닉네임 중복 체크
     public void checkNickname(String nickname) {
         if (accountRepository.existsByNickname(nickname)) {
-            throw new NicknameDuplicateException(ResultCode.NICKNAME_DUPLICATION);
+            throw new DuplicateException(ResultCode.NICKNAME_DUPLICATION);
         }
     }
 }

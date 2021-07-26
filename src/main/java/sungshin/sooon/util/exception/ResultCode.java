@@ -18,13 +18,12 @@ public enum ResultCode {
     POST_CREATE_SUCCESS(CREATED, "포스트 생성 성공"),
     POST_READ_SUCCESS(OK, "포스트 조회 성공"),
     POST_DELETE_SUCCESS(OK, "포스트 삭제 성공"),
+    POST_LIKE_SUCCESS(CREATED, "포스트 좋아요 성공"),
 
     /* 400 BAD_REQUEST : 잘못된 요청 */
     INVALID_REFRESH_TOKEN(BAD_REQUEST, "리프레시 토큰이 유효하지 않습니다"),
     MISMATCH_REFRESH_TOKEN(BAD_REQUEST, "리프레시 토큰의 유저 정보가 일치하지 않습니다"),
     CANNOT_FOLLOW_MYSELF(BAD_REQUEST, "자기 자신은 팔로우 할 수 없습니다"),
-    EMAIL_DUPLICATION(BAD_REQUEST,"이미 사용 중인 이메일입니다"),
-    NICKNAME_DUPLICATION(BAD_REQUEST, "이미 사용 중인 닉네임입니다"),
 
     VALID_ERROR(BAD_REQUEST, "유효성 검사 실패"),
     POST_CREATE_FAIL(BAD_REQUEST, "포스트 생성 실패"),
@@ -44,6 +43,9 @@ public enum ResultCode {
 
     /* 409 CONFLICT : Resource 의 현재 상태와 충돌. 보통 중복된 데이터 존재 */
     DUPLICATE_RESOURCE(CONFLICT, "데이터가 이미 존재합니다"),
+    EMAIL_DUPLICATION(CONFLICT,"이미 사용 중인 이메일입니다"),
+    NICKNAME_DUPLICATION(CONFLICT, "이미 사용 중인 닉네임입니다"),
+    LIKE_DUPLICATION(CONFLICT, "이미 좋아요한 글입니다"),
 
     /* 500 CONFLICT */
     INTER_SERVER_ERROR(INTERNAL_SERVER_ERROR, "서버 오류 발생"),

@@ -24,15 +24,9 @@ import static org.springframework.web.client.HttpClientErrorException.*;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(EmailDuplicateException.class)
-    protected ResponseEntity<Result> handleEmailDuplicateException(EmailDuplicateException e){
-        log.error("handleEmailDuplicateException : {}", e.getResultCode());
-        return Result.toResult(e.getResultCode());
-    }
-
-    @ExceptionHandler(NicknameDuplicateException.class)
-    protected ResponseEntity<Result> handleNicknameDuplicateException(NicknameDuplicateException e){
-        log.error("handleNicknameDuplicateException : {}", e.getResultCode());
+    @ExceptionHandler(DuplicateException.class)
+    protected ResponseEntity<Result> handleDuplicateException(DuplicateException e) {
+        log.error("handleDuplicateException : {}", e.getResultCode());
         return Result.toResult(e.getResultCode());
     }
 

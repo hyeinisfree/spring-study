@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import sungshin.sooon.domain.account.Account;
-import sungshin.sooon.domain.post.Post;
-import sungshin.sooon.domain.post.PostRepository;
+import sungshin.sooon.domain.post.*;
 import sungshin.sooon.dto.PostRequestDto;
 import sungshin.sooon.dto.PostResponseDto;
+import sungshin.sooon.util.exception.DuplicateException;
 import sungshin.sooon.util.exception.ForbiddenException;
 import sungshin.sooon.util.exception.ResourceNotFoundException;
 import sungshin.sooon.util.exception.ResultCode;
@@ -25,6 +25,8 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final PostLikeRepository postLikeRepository;
+    private final PostCommentRepository postCommentRepository;
 
     // 포스트 생성
     @Transactional
@@ -56,6 +58,20 @@ public class PostService {
             postRepository.delete(post);
         } else {
             throw new ForbiddenException(ResultCode.FORBIDDEN_MEMBER);
+        }
+    }
+
+    // 포스트 좋아요
+    @Transactional
+    public void like(Account account, Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(ResultCode.POST_NOT_FOUND));
+        if(postLikeRepository.existsByAccountAndPost(account, post)) {
+            throw new DuplicateException(ResultCode.LIKE_DUPLICATION);
+        } else {
+            PostLike postlike = new PostLike();
+            postlike.setAccount(account);
+            postlike.setPost(post);
+            postLikeRepository.save(postlike);
         }
     }
 }
