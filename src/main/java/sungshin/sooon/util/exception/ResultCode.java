@@ -34,6 +34,9 @@ public enum ResultCode {
     INVALID_AUTH_TOKEN(UNAUTHORIZED, "권한 정보가 없는 토큰입니다"),
     UNAUTHORIZED_MEMBER(UNAUTHORIZED, "현재 내 계정 정보가 존재하지 않습니다"),
 
+    /* 403 FORBIDDEN : 권한이 없는 사용자 */
+    FORBIDDEN_MEMBER(FORBIDDEN, "해당 권한이 없습니다."),
+
     /* 404 NOT_FOUND : Resource 를 찾을 수 없음 */
     MEMBER_NOT_FOUND(NOT_FOUND, "해당 유저 정보를 찾을 수 없습니다"),
     REFRESH_TOKEN_NOT_FOUND(NOT_FOUND, "로그아웃 된 사용자입니다"),

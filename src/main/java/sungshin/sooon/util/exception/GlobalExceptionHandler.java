@@ -9,6 +9,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.web.client.HttpClientErrorException.*;
 
 @Slf4j
 @RestControllerAdvice
@@ -36,6 +39,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     protected ResponseEntity<Result> handleResourceNotFoundException(ResourceNotFoundException e){
         log.error("handleResourceNotFoundException : {}", e.getResultCode());
+        return Result.toResult(e.getResultCode());
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    protected ResponseEntity<Result> handleForbiddenException(ForbiddenException e) {
+        log.error("handleForbiddenException : {}", e.getResultCode());
         return Result.toResult(e.getResultCode());
     }
 

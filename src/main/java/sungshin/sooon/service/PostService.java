@@ -6,11 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.post.Post;
 import sungshin.sooon.domain.post.PostRepository;
 import sungshin.sooon.dto.PostRequestDto;
 import sungshin.sooon.dto.PostResponseDto;
+import sungshin.sooon.util.exception.ForbiddenException;
 import sungshin.sooon.util.exception.ResourceNotFoundException;
 import sungshin.sooon.util.exception.ResultCode;
 
@@ -26,12 +28,21 @@ public class PostService {
 
     // 포스트 생성
     @Transactional
-    public void create(PostRequestDto postRequestDto) throws EntityExistsException {
+    public void create(Account account, PostRequestDto postRequestDto) throws EntityExistsException {
         Post post = postRequestDto.toPost();
+        post.setAccount(account);
         postRepository.save(post);
     }
 
-    // 포스트 조회
+    // 포스트 목록 조회
+    @Transactional
+    public Page<PostResponseDto> readAll(Pageable pageable) {
+        Page<Post> posts = postRepository.findAll(pageable);
+        Page<PostResponseDto> data = posts.map(PostResponseDto::from);
+        return data;
+    }
+
+    // 포스트 상세 조회
     @Transactional
     public PostResponseDto readOne(Long postId) {
         return PostResponseDto.from(postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(ResultCode.POST_NOT_FOUND)));
@@ -39,23 +50,12 @@ public class PostService {
 
     // 포스트 삭제
     @Transactional
-    public boolean delete(Account account, Long postId) {
+    public void delete(Account account, Long postId) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(ResultCode.POST_NOT_FOUND));
-        System.out.println(account.toString());
-        System.out.println(post.getAccount().toString());
         if(account == post.getAccount()) {
             postRepository.delete(post);
-            return true;
         } else {
-            return false;
+            throw new ForbiddenException(ResultCode.FORBIDDEN_MEMBER);
         }
-    }
-
-    // 포스트 조회 - 페이징 처리
-    @Transactional
-    public Page<PostResponseDto> readAll(Pageable pageable) {
-        Page<Post> posts = postRepository.findAll(pageable);
-        Page<PostResponseDto> data = posts.map(PostResponseDto::from);
-        return data;
     }
 }

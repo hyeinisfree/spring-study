@@ -31,12 +31,8 @@ public class PostController {
     // 포스트 생성
     @PostMapping("")
     public ResponseEntity<Result> create(@CurrentUser Account account, @RequestBody @Valid PostRequestDto postRequestDto) {
-        if(account != null) {
-            postRequestDto.setAccount(account);
-            postService.create(postRequestDto);
-            return Result.toResult(ResultCode.POST_CREATE_SUCCESS);
-        }
-        return Result.toResult(ResultCode.POST_CREATE_FAIL);
+        postService.create(account, postRequestDto);
+        return Result.toResult(ResultCode.POST_CREATE_SUCCESS);
     }
 
     // 포스트 목록 조회
@@ -56,15 +52,15 @@ public class PostController {
     // 포스트 삭제
     @DeleteMapping("/{postId}")
     public ResponseEntity<Result> deleteOne(@CurrentUser Account account, @PathVariable Long postId) {
-        if(account != null) {
-            if(postService.delete(account, postId)){
-                return Result.toResult(ResultCode.POST_DELETE_SUCCESS);
-            }else {
-                return Result.toResult(ResultCode.POST_DELETE_FAIL);
-            }
-        }
-        return Result.toResult(ResultCode.POST_DELETE_FAIL);
+        postService.delete(account, postId);
+        return Result.toResult(ResultCode.POST_DELETE_SUCCESS);
     }
 
-    
+    // 포스트 좋아요
+    @PostMapping("/like/{postId}")
+    public ResponseEntity<Result> like(@CurrentUser Account account, @PathVariable Long postId) {
+        return Result.toResult(null);
+    }
+
+    // 댓글 생성
 }
