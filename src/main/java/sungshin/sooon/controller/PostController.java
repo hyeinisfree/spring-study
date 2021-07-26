@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.account.CurrentUser;
 import sungshin.sooon.domain.post.Post;
+import sungshin.sooon.dto.PostCommentRequestDto;
 import sungshin.sooon.dto.PostRequestDto;
 import sungshin.sooon.dto.PostResponseDto;
 import sungshin.sooon.service.PostService;
@@ -56,11 +57,16 @@ public class PostController {
     }
 
     // 포스트 좋아요
-    @PostMapping("/like/{postId}")
-    public ResponseEntity<Result> like(@CurrentUser Account account, @PathVariable Long postId) {
-        postService.like(account, postId);
-        return Result.toResult(ResultCode.POST_LIKE_SUCCESS);
+    @PostMapping("/{postId}/like")
+    public ResponseEntity<Result> createLike(@CurrentUser Account account, @PathVariable Long postId) {
+        postService.createLike(account, postId);
+        return Result.toResult(ResultCode.POST_LIKE_CREATE_SUCCESS);
     }
 
-    // 댓글 생성
+    // 포스트 댓글 생성
+    @PostMapping("/comment")
+    public ResponseEntity<Result> createComment(@CurrentUser Account account, @RequestBody @Valid PostCommentRequestDto postCommentRequestDto) {
+        postService.createComment(account, postCommentRequestDto);
+        return Result.toResult(ResultCode.POST_COMMENT_CREATE_SUCCESS);
+    }
 }

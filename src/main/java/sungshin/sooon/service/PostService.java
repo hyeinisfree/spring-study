@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import sungshin.sooon.domain.account.Account;
 import sungshin.sooon.domain.post.*;
+import sungshin.sooon.dto.PostCommentRequestDto;
 import sungshin.sooon.dto.PostRequestDto;
 import sungshin.sooon.dto.PostResponseDto;
 import sungshin.sooon.util.exception.DuplicateException;
@@ -18,6 +19,7 @@ import sungshin.sooon.util.exception.ResultCode;
 
 import javax.persistence.EntityExistsException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -37,7 +39,7 @@ public class PostService {
     }
 
     // 포스트 목록 조회
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<PostResponseDto> readAll(Pageable pageable) {
         Page<Post> posts = postRepository.findAll(pageable);
         Page<PostResponseDto> data = posts.map(PostResponseDto::from);
@@ -45,7 +47,7 @@ public class PostService {
     }
 
     // 포스트 상세 조회
-    @Transactional
+    @Transactional(readOnly = true)
     public PostResponseDto readOne(Long postId) {
         return PostResponseDto.from(postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(ResultCode.POST_NOT_FOUND)));
     }
@@ -63,7 +65,7 @@ public class PostService {
 
     // 포스트 좋아요
     @Transactional
-    public void like(Account account, Long postId) {
+    public void createLike(Account account, Long postId) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(ResultCode.POST_NOT_FOUND));
         if(postLikeRepository.existsByAccountAndPost(account, post)) {
             throw new DuplicateException(ResultCode.LIKE_DUPLICATION);
@@ -73,5 +75,16 @@ public class PostService {
             postlike.setPost(post);
             postLikeRepository.save(postlike);
         }
+    }
+
+    // 포스트 댓글 생성
+    @Transactional
+    public void createComment(Account account, PostCommentRequestDto postCommentRequestDto) {
+        Long postId = postCommentRequestDto.getPostId();
+        Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException(ResultCode.POST_NOT_FOUND));
+        PostComment postComment = postCommentRequestDto.toPostComment();
+        postComment.setAccount(account);
+        postComment.setPost(post);
+        postCommentRepository.save(postComment);
     }
 }

@@ -21,7 +21,6 @@ public class PostComment {
     @Column(nullable = false)
     private String comment;
 
-
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean isAnonymous;
 
@@ -55,4 +54,16 @@ public class PostComment {
         }
     }
 
+    @Override
+    public String toString() {
+        return "PostComment{" +
+                "id=" + id +
+                ", comment='" + comment + '\'' +
+                ", isAnonymous=" + isAnonymous +
+                ", orderNum=" + orderNum +
+                ", createdAt=" + createdAt +
+                ", post=" + post +
+                ", account=" + account +
+                '}';
+    }
 }
