@@ -32,7 +32,7 @@ public class PostResponseDto {
 
     private AccountResponseDto account;
 
-    private List<PostComment> comments;
+    private List<PostComment> postComments;
 
     public static PostResponseDto from(Post post) {
         return PostResponseDto.builder()

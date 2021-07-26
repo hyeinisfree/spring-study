@@ -24,4 +24,12 @@ public class PostImages {
     @ManyToOne
     @JoinColumn(name="post_id")
     private Post post;
+
+    public void setPost(Post post) {
+        this.post = post;
+
+        if(!post.getPostImages().contains(this)) {
+            post.getPostImages().add(this);
+        }
+    }
 }

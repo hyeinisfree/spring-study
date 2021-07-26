@@ -3,9 +3,14 @@ package sungshin.sooon.domain.account;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GeneratorType;
+import sungshin.sooon.domain.post.Post;
+import sungshin.sooon.domain.post.PostComment;
+import sungshin.sooon.domain.post.PostLike;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,6 +36,15 @@ public class Account {
 
     @Column(nullable = false)
     private LocalDateTime registeredDateTime;
+
+    @OneToMany(mappedBy = "account")
+    private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "account")
+    private List<PostComment> postComments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "account")
+    private List<PostLike> postLikes = new ArrayList<>();
 
     /**
      *

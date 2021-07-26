@@ -18,11 +18,28 @@ public class PostLike {
     @Column(name = "post_like_id", nullable = false)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="post_id")
+    private Post post;
+
+    public void setPost(Post post) {
+        this.post = post;
+
+        if(!post.getPostLikes().contains(this)) {
+            post.getPostLikes().add(this);
+        }
+    }
+
+    @ManyToOne
     @JoinColumn(name="account_id")
     private Account account;
 
-    @OneToOne
-    @JoinColumn(name="post_id")
-    private Post post;
+    public void setAccount(Account account) {
+        this.account = account;
+
+        if(!account.getPostLikes().contains(this)) {
+            account.getPostLikes().add(this);
+        }
+    }
+
 }

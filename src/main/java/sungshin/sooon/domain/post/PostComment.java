@@ -22,7 +22,7 @@ public class PostComment {
     private String comment;
 
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean isAnonymous;
 
     @Column(nullable = false)
@@ -35,7 +35,24 @@ public class PostComment {
     @JoinColumn(name="post_id")
     private Post post;
 
-    @ManyToOne
+    public void setPost(Post post) {
+        this.post = post;
+
+        if(!post.getPostComments().contains(this)) {
+            post.getPostComments().add(this);
+        }
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="account_id")
     private Account account;
+
+    public void setAccount(Account account) {
+        this.account = account;
+
+        if(!account.getPostComments().contains(this)) {
+            account.getPostComments().add(this);
+        }
+    }
+
 }
