@@ -64,8 +64,8 @@ public class PostController {
     }
 
     // 포스트 댓글 생성
-    @PostMapping("/comment")
-    public ResponseEntity<Result> createComment(@CurrentUser Account account, @RequestBody @Valid PostCommentRequestDto postCommentRequestDto) {
+    @PostMapping("/{postId}/comment")
+    public ResponseEntity<Result> createComment(@CurrentUser Account account, @PathVariable Long postId, @RequestBody PostCommentRequestDto postCommentRequestDto) {
         postService.createComment(account, postCommentRequestDto);
         return Result.toResult(ResultCode.POST_COMMENT_CREATE_SUCCESS);
     }
